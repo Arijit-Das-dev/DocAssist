@@ -1,54 +1,112 @@
 import streamlit as st
 import os
 from IngestionPipeline.main1 import IngestionPipelineModel
+from RetrievalPipeline.main2 import RetrievalPipelineModel
 
-st.title("DocAssist",
-         width="stretch",
-         text_alignment="center"
-         )
-st.divider()
-
-
-st.sidebar.title("Welcome to DocAssist")
-st.sidebar.caption("✔ Start PDF analysis")
-st.sidebar.caption("✔ Prepare document for search")
-st.sidebar.caption("✔ Process PDF content")
-st.sidebar.caption("✔ Build knowledge from PDF")
-
-st.sidebar.divider()
-
-pdf_doc = st.sidebar.file_uploader(
-
-    label="Upload pdf below",
-    type=["pdf"],
-    help="Only PDF files are supported. Max size depends on your system"
+# -------------------------------
+# App Config
+# -------------------------------
+st.set_page_config(
+    page_title="DocAssist",
 )
 
+# -------------------------------
+# Title
+# -------------------------------
+st.title("📄 DocAssist")
+st.divider()
 
+# -------------------------------
+# Sidebar
+# -------------------------------
+st.sidebar.title("Welcome to DocAssist")
+st.sidebar.caption("✔ Upload PDFs")
+st.sidebar.caption("✔ Index documents")
+st.sidebar.caption("✔ Ask questions from PDFs")
 st.sidebar.divider()
 
-if pdf_doc:
+# -------------------------------
+# Session State Init
+# -------------------------------
+if "db_ready" not in st.session_state:
+    st.session_state.db_ready = False
 
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# -------------------------------
+# PDF Upload
+# -------------------------------
+pdf_doc = st.sidebar.file_uploader(
+    label="Upload PDF",
+    type=["pdf"],
+    help="Only PDF files are supported"
+)
+
+if pdf_doc:
+    os.makedirs("Docs", exist_ok=True)
     file_path = os.path.join("Docs", pdf_doc.name)
 
-    if os.path.exists(file_path):
-        pass
-    else:
+    if not os.path.exists(file_path):
         with open(file_path, "wb") as f:
             f.write(pdf_doc.getbuffer())
-            st.sidebar.success(f"File saved successfully")
+        st.sidebar.success("PDF uploaded successfully")
+    else:
+        st.sidebar.info("PDF already exists")
 
-def main():
+# -------------------------------
+# INGESTION (RUNS ONCE)
+# -------------------------------
+if st.sidebar.button("Confirm") and not st.session_state.db_ready:
 
-    print("\n____________Main Function____________\n")
-    ingest = IngestionPipelineModel()
+    with st.spinner("Indexing documents..."):
 
-    document = ingest.load_documents(file_path="Docs")
+        ingest = IngestionPipelineModel()
 
-    splitted_chunks = ingest.text_to_chunks(document)
+        documents = ingest.load_documents(file_path="Docs")
+        chunks = ingest.text_to_chunks(documents)
+        ingest.create_and_persist_chroma_db(chunks)
 
-    vector_db = ingest.create_and_persist_chroma_db(splitted_chunks)
+        st.session_state.db_ready = True
 
-    print(vector_db)
+    st.sidebar.success("Documents indexed successfully")
 
-if st.sidebar.button("Confirm"):main()
+# -------------------------------
+# CHAT UI (ALWAYS RUNS)
+# -------------------------------
+rp = RetrievalPipelineModel()
+
+if st.session_state.db_ready:
+
+    # Display chat history
+    for msg in st.session_state.messages:
+        with st.chat_message(msg["role"]):
+            st.markdown(msg["content"])
+
+    # User input
+    user_input = st.chat_input("Ask anything from your PDFs...")
+
+    if user_input:
+        # Store user message
+        st.session_state.messages.append({
+            "role": "user",
+            "content": user_input
+        })
+
+        with st.chat_message("user"):
+            st.markdown(user_input)
+
+        # Assistant response
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                response = rp.setting_Up_retrieval(user_input)
+                st.markdown(response)
+
+        # Store assistant message
+        st.session_state.messages.append({
+            "role": "assistant",
+            "content": response
+        })
+
+else:
+    st.info("👈 Upload PDFs and click **Confirm** to start chatting.")

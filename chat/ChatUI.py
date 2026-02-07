@@ -52,7 +52,7 @@ if pdf_doc:
             f.write(pdf_doc.getbuffer())
         st.sidebar.success("PDF uploaded successfully")
     else:
-        st.sidebar.info("PDF already exists")
+        st.sidebar.success("Start Chat")
 
 # -------------------------------
 # INGESTION (RUNS ONCE)

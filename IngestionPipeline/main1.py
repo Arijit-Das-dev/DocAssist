@@ -1,7 +1,7 @@
 from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
-from langchain_text_splitters import CharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from transformers import AutoTokenizer
 import os
 
@@ -41,7 +41,7 @@ class IngestionPipelineModel:
 
         return documents
     
-    def text_to_chunks(self, document, chunk_size = 800, chunk_overlap = 0):
+    def text_to_chunks(self, document, chunk_size = 800, chunk_overlap = 100):
 
         print("____GETTING READY OF CHUNKS____")
 
@@ -49,27 +49,29 @@ class IngestionPipelineModel:
         tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 
         # Splitting All the texts
-        text_splitter = CharacterTextSplitter(
+        text_splitter = RecursiveCharacterTextSplitter(
 
             chunk_size=chunk_size, # splitted upto 800 chars 
-            chunk_overlap=chunk_overlap 
+            chunk_overlap=chunk_overlap,
+            separators=["\n\n", "\n", " ", ""]
         )
 
         # We are assigning all the splitted texts inside each chunks
         chunks = text_splitter.split_documents(document)
 
         if chunks:
-
-            for i, chunk in enumerate(chunks):
+            print(len(chunks))
+            for i, chunk in enumerate(chunks, 1):
 
                 print("="*100)
-                print(f" \nChunk : {i+1}")
+                print(f" \nChunk : {i}")
                 print(f" \nSource : {chunk.metadata['source']}") # Location 
                 tokens = tokenizer.encode(chunk.page_content)
                 num_tokens = len(tokens)
-                print(f"Tokens in chunk {i+1} : {num_tokens}") # Tokens in each chunk
+                print(f"Tokens in chunk {i} : {num_tokens}") # Tokens in each chunk
                 print(f" \nContent:")
                 print(f" \n{chunk.page_content}") # Chunk Contents
+
 
         return chunks
 
@@ -85,5 +87,5 @@ class IngestionPipelineModel:
             collection_metadata={"hnsw:space": "cosine"}
         )
 
-        print("____SUCCESSFULL_____")
+        print("____SUCCESSFUL_____")
         return vector_store

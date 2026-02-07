@@ -12,7 +12,6 @@ st.divider()
 st.sidebar.title("DocAssist")
 st.sidebar.caption("✔ Start PDF analysis")
 st.sidebar.caption("✔ Prepare document for search")
-st.sidebar.caption("✔ Index document into vector store")
 st.sidebar.caption("✔ Process PDF content")
 st.sidebar.caption("✔ Build knowledge from PDF")
 
@@ -20,10 +19,11 @@ st.sidebar.divider()
 
 pdf_doc = st.sidebar.file_uploader(
 
-    label="upload pdf below",
+    label="Upload pdf below",
     type=["pdf"],
     help="Only PDF files are supported. Max size depends on your system"
 )
+
 
 st.sidebar.divider()
 
@@ -36,8 +36,7 @@ if pdf_doc:
     else:
         with open(file_path, "wb") as f:
             f.write(pdf_doc.getbuffer())
-
-        st.sidebar.success(f"File saved successfully")
+            st.sidebar.success(f"File saved successfully")
 
 def main():
 
@@ -52,4 +51,4 @@ def main():
 
     print(vector_db)
 
-if st.sidebar.button("Press"):main()
+if st.sidebar.button("Confirm"):main()

@@ -9,7 +9,7 @@ st.title("DocAssist",
 st.divider()
 
 
-st.sidebar.title("DocAssist")
+st.sidebar.title("Welcome to DocAssist")
 st.sidebar.caption("✔ Start PDF analysis")
 st.sidebar.caption("✔ Prepare document for search")
 st.sidebar.caption("✔ Process PDF content")

@@ -57,7 +57,7 @@ if pdf_doc:
 # -------------------------------
 # INGESTION (RUNS ONCE)
 # -------------------------------
-if st.sidebar.button("Confirm") and not st.session_state.db_ready:
+if st.sidebar.button("Confirm", type="primary") and not st.session_state.db_ready:
 
     with st.spinner("Indexing documents..."):
 

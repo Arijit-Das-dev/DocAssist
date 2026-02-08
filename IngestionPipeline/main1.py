@@ -2,7 +2,6 @@ from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from transformers import AutoTokenizer
 import os
 
 class IngestionPipelineModel:
@@ -41,39 +40,39 @@ class IngestionPipelineModel:
 
         return documents
     
-    def text_to_chunks(self, document, chunk_size = 800, chunk_overlap = 100):
-
+    def text_to_chunks(self, documents, chunk_size=800, chunk_overlap=100,debug=False):
+        
         print("____GETTING READY OF CHUNKS____")
 
-        # for token count from each chunk
-        tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
-
-        # Splitting All the texts
         text_splitter = RecursiveCharacterTextSplitter(
-
-            chunk_size=chunk_size, # splitted upto 800 chars 
+            chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,
             separators=["\n\n", "\n", " ", ""]
         )
 
-        # We are assigning all the splitted texts inside each chunks
-        chunks = text_splitter.split_documents(document)
+        chunks = text_splitter.split_documents(documents)
 
-        if chunks:
-            print(len(chunks))
+        if debug:
+            print(f"Total chunks created: {len(chunks)}")
+
             for i, chunk in enumerate(chunks, 1):
+                tokens = self.tokenizer.encode(
+                    chunk.page_content,
+                    add_special_tokens=False
+                )
 
-                print("="*100)
-                print(f" \nChunk : {i}")
-                print(f" \nSource : {chunk.metadata['source']}") # Location 
-                tokens = tokenizer.encode(chunk.page_content)
-                num_tokens = len(tokens)
-                print(f"Tokens in chunk {i} : {num_tokens}") # Tokens in each chunk
-                print(f" \nContent:")
-                print(f" \n{chunk.page_content}") # Chunk Contents
+                #  TOKEN COUNT STORED HERE
+                chunk.metadata["token_count"] = len(tokens)
 
+                print("=" * 80)
+                print(f"Chunk: {i}")
+                print(f"Source: {chunk.metadata.get('source')}")
+                print(f"Page: {chunk.metadata.get('page', 'N/A')}")
+                print(f"Tokens: {chunk.metadata['token_count']}")
+                print(chunk.page_content[:500])
 
         return chunks
+
 
     def create_and_persist_chroma_db(self, chunks, db_path="db/ChromaDB"):
         embeddings = HuggingFaceEmbeddings(

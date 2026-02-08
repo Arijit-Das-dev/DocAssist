@@ -26,7 +26,7 @@ class RetrievalPipelineModel:
         )
 
         # Retriever (Top-k)
-        retriever = db.as_retriever(search_kwargs={"k": 3})
+        retriever = db.as_retriever(search_kwargs={"k": 1})
 
         # Retrieve relevant documents 
         relevant_docs = retriever.invoke(query)

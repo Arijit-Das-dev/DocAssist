@@ -43,7 +43,7 @@ Relevant document sections are retrieved using embeddings and passed as context 
    The document is split into smaller chunks and converted into vector embeddings.
 
 3. **Vector Storage**  
-   Embeddings are stored in a vector database for efficient semantic search.
+   Embeddings are stored in a vector database for efficient cosine similarity search.
 
 4. **User Query**  
    User asks a natural language question.

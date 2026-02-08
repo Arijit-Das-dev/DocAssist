@@ -33,3 +33,27 @@ Relevant document sections are retrieved using embeddings and passed as context 
 | Document Loader | PyPDFLoader |
 | UI | Streamlit |
 | Dev Tools | Git, venv |
+
+## ⚒ How it works ?
+## How It Works
+
+1. **Document Upload**  
+   User uploads a PDF document through the interface.
+
+2. **Chunking & Embedding**  
+   The document is split into smaller chunks and converted into vector embeddings.
+
+3. **Vector Storage**  
+   Embeddings are stored in a vector database for efficient semantic search.
+
+4. **User Query**  
+   User asks a natural language question.
+
+5. **Semantic Retrieval**  
+   Relevant document chunks are retrieved based on vector similarity.
+
+6. **Context Injection**  
+   Retrieved chunks are passed as context to the LLM.
+
+7. **Answer Generation**  
+   The LLM generates a response grounded strictly in the document content.

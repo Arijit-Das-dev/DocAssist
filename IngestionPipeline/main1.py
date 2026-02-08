@@ -23,7 +23,7 @@ class IngestionPipelineModel:
 
         print("___FILES LOADED SUCCESSFULLY___")
 
-        # Loading the folders and files
+        # Loading the files inside the folders
         documents = loader.load()
 
         if len(documents) == 0:

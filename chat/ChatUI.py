@@ -13,13 +13,13 @@ st.set_page_config(
 # -------------------------------
 # Title
 # -------------------------------
-st.title("📄 DocAssist")
+st.title("📄Wellcome to DocAssist")
 st.divider()
 
 # -------------------------------
 # Sidebar
 # -------------------------------
-st.sidebar.title("Welcome to DocAssist")
+st.sidebar.title("DocAssist")
 st.sidebar.caption("✔ Upload PDFs")
 st.sidebar.caption("✔ Index documents")
 st.sidebar.caption("✔ Ask questions from PDFs")

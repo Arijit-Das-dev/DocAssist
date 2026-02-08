@@ -92,5 +92,5 @@ Relevant document sections are retrieved using embeddings and passed as context 
 ```
 ## 🔗 Product Overview
 <p align="center">
-  <img src="docs/screenshots/docassist_pdf_upload.png" width="80%" />
+  <img src="docs/screenshots/docassist_pdf_upload.png" width="100%" />
 </p>

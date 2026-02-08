@@ -57,8 +57,7 @@ Relevant document sections are retrieved using embeddings and passed as context 
 7. **Answer Generation**  
    The LLM generates a response grounded strictly in the document content.
 
-## Structure
-## Architecture Overview
+## 📐Architecture Overview
 
 ```text
 ┌──────────┐

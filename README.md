@@ -89,3 +89,5 @@ Relevant document sections are retrieved using embeddings and passed as context 
 ┌──────────┐
 │  Answer  │
 └──────────┘
+```
+## 🔗 Product Overview

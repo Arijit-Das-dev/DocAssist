@@ -21,3 +21,17 @@ Relevant document sections are retrieved using embeddings and passed as context 
 4.  Reduced hallucination through retrieval grounding
 5.  Modular RAG pipeline (ingestion, retrieval, generation)
 6.  Scalable design for future extensions
+
+# 👩‍💻 Tech stack
+## Tech Stack
+
+| Layer | Technology |
+|------|-----------|
+| Language | Python |
+| LLM | Groq |
+| RAG Framework | LangChain |
+| Embeddings | Sentence Transformers |
+| Vector DB | FAISS |
+| Document Loader | PyPDFLoader |
+| UI | Streamlit |
+| Dev Tools | Git, venv |

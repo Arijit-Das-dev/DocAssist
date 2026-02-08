@@ -13,3 +13,11 @@ Traditional keyword-based search fails to capture semantic meaning, and generic 
 # ❔ Solution
 DocAssist solves this by combining vector-based semantic search with large language models.
 Relevant document sections are retrieved using embeddings and passed as context to the LLM, ensuring responses are accurate, explainable, and source-aware.
+
+# 🔑 Key Features
+• Upload and process PDF documents
+• Semantic search using vector embeddings
+• Context-aware question answering
+• Reduced hallucination through retrieval grounding
+• Modular RAG pipeline (ingestion, retrieval, generation)
+• Scalable design for future extensions

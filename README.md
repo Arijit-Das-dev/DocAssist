@@ -7,3 +7,9 @@ Instead of relying on generic LLM knowledge, DocAssist retrieves relevant docume
 <br>
 
 # 📌 Problem Statement
+Large documents are difficult to manually search and understand.
+Traditional keyword-based search fails to capture semantic meaning, and generic LLMs cannot reliably answer questions about private documents.
+
+# ❔ Solution
+DocAssist solves this by combining vector-based semantic search with large language models.
+Relevant document sections are retrieved using embeddings and passed as context to the LLM, ensuring responses are accurate, explainable, and source-aware.

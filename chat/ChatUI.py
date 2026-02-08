@@ -107,6 +107,6 @@ if st.session_state.db_ready:
             "role": "assistant",
             "content": response
         })
-
+ 
 else:
     st.info("👈 Upload PDFs and click **Confirm** to start chatting.")

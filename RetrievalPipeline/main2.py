@@ -1,7 +1,7 @@
 from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from langchain_chroma import Chroma
 from RetrievalPipeline.GroqBluePrint import GroqModel
-import streamlit as st
+
 
 class RetrievalPipelineModel:
 

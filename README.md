@@ -26,7 +26,7 @@ Relevant document sections are retrieved using embeddings and passed as context 
 | Layer | Technology |
 |------|-----------|
 | Language | Python |
-| LLM | Groq [LLaMa |
+| LLM | Groq [LLaMa] |
 | RAG Framework | LangChain |
 | Embeddings | Sentence Transformers |
 | Vector DB | Chroma DB |
@@ -35,7 +35,6 @@ Relevant document sections are retrieved using embeddings and passed as context 
 | Dev Tools | Git, venv |
 
 ## ⚒ How it works ?
-## How It Works
 
 1. **Document Upload**  
    User uploads a PDF document through the interface.

@@ -56,3 +56,37 @@ Relevant document sections are retrieved using embeddings and passed as context 
 
 7. **Answer Generation**  
    The LLM generates a response grounded strictly in the document content.
+
+## Structure
+## Architecture Overview
+
+```text
+┌──────────┐
+│   User   │
+└────┬─────┘
+     ↓
+┌──────────┐
+│    UI    │  (Streamlit)
+└────┬─────┘
+     ↓
+┌──────────────┐
+│ Query Engine │
+│ (Retriever)  │
+└────┬─────────┘
+     ↓
+┌──────────────┐
+│  Vector DB   │  (Chroma DB)
+└────┬─────────┘
+     ↓
+┌────────────────┐
+│ Context Builder│
+│ (Top-K Chunks) │
+└────┬───────────┘
+     ↓
+┌──────────┐
+│   LLM    │  (Groq)
+└────┬─────┘
+     ↓
+┌──────────┐
+│  Answer  │
+└──────────┘

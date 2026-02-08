@@ -15,9 +15,9 @@ DocAssist solves this by combining vector-based semantic search with large langu
 Relevant document sections are retrieved using embeddings and passed as context to the LLM, ensuring responses are accurate, explainable, and source-aware.
 
 # 🔑 Key Features
-• Upload and process PDF documents
-• Semantic search using vector embeddings
-• Context-aware question answering
-• Reduced hallucination through retrieval grounding
-• Modular RAG pipeline (ingestion, retrieval, generation)
-• Scalable design for future extensions
+1.  Upload and process PDF documents
+2.  Semantic search using vector embeddings
+3.  Context-aware question answering
+4.  Reduced hallucination through retrieval grounding
+5.  Modular RAG pipeline (ingestion, retrieval, generation)
+6.  Scalable design for future extensions

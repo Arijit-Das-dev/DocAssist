@@ -28,19 +28,21 @@ class RetrievalPipelineModel:
         # Retriever (Top-k)
         retriever = db.as_retriever(search_kwargs={"k": 3})
 
-        # Retrieve relevant documents
+        # Retrieve relevant documents 
         relevant_docs = retriever.invoke(query)
 
         print(f"\nUSER QUERY:\n{query}")
         print("\nRETRIEVED CONTEXT:\n")
 
-        # Build context
+        # Build context 
+        # That context is returning top 3 relevent chunks that contains human readable sentences [texts]
         context = "\n\n".join(
             f"[Chunk {i+1}]\n{doc.page_content}"
             for i, doc in enumerate(relevant_docs)
         )
 
         # Collect streamed tokens
+        # That context passes through the LLM for explaination
         final_answer = ""
         for token in g.stream_chat(
             user_message=context

@@ -9,7 +9,7 @@ class IngestionPipelineModel:
 
     def load_documents(self, file_path="Docs"):
 
-        if not os.path.exists(file_path):
+        if not os.path.exists(file_path): # If folder is missing raise FileNotFoundError
 
             raise FileNotFoundError(f"___{file_path} IS MISSING___")
 
@@ -45,7 +45,7 @@ class IngestionPipelineModel:
 
         print("____GETTING READY OF CHUNKS____")
 
-        # for token count
+        # for token count from each chunk
         tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
 
         # Splitting All the texts

@@ -1,5 +1,15 @@
 # DocAssist
 
+## Built With
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/LangChain-000000?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Groq-FF4F00?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/FAISS-2C2C2C?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/>
+</p>
+
 # 🍳 Overview
 DocAssist is a document-based question answering system built using Retrieval-Augmented Generation (RAG).
 It enables users to upload documents (PDFs) and interact with them using natural language queries.

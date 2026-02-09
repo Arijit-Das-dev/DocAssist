@@ -1,14 +1,17 @@
 # DocAssist
 
+## Tech Stack
+
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/LangChain-000000?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/ChromaDB-FF6F00?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/HuggingFace-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black"/>
-  <img src="https://img.shields.io/badge/Groq-FF4F00?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/LLaMA-0467DF?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" height="60"/>
+  <img src="https://img.shields.io/badge/LangChain-000000?style=for-the-badge" height="60"/>
+  <img src="https://img.shields.io/badge/ChromaDB-FF6F00?style=for-the-badge" height="60"/>
+  <img src="https://img.shields.io/badge/HuggingFace-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" height="60"/>
+  <img src="https://img.shields.io/badge/Groq-FF4F00?style=for-the-badge" height="60"/>
+  <img src="https://img.shields.io/badge/LLaMA-0467DF?style=for-the-badge" height="60"/>
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" height="60"/>
 </p>
+
 
 # 🍳 Overview
 DocAssist is a document-based question answering system built using Retrieval-Augmented Generation (RAG).

@@ -1,7 +1,5 @@
 # DocAssist
 
-## Tech Stack
-
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" height="100"/>
   <img src="https://img.shields.io/badge/LangChain-000000?style=for-the-badge" height="100"/>
